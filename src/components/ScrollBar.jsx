@@ -24,10 +24,11 @@ const ScrollBar = ({ items, styles, activeIndex, viewport, activeItems }) => {
 };
 
 ScrollBar.propTypes = {
-  viewport: PropTypes.number.isRequired,
   items: PropTypes.number.isRequired,
-  activeIndex: PropTypes.number.isRequired,
   styles: PropTypes.objectOf(PropTypes.string),
+  activeIndex: PropTypes.number.isRequired,
+  viewport: PropTypes.number.isRequired,
+  activeItems: PropTypes.number.isRequired,
 };
 
 ScrollBar.defaultProps = {
