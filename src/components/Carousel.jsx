@@ -37,7 +37,7 @@ const Carousel = ({ children, options }) => {
   }
 
   const renderScrollBar = () => {
-    if (options.displayScrollBar) return <ScrollBar items={React.Children.count(children)} activeIndex={activeIndex} viewport={viewport} />
+    if (options.displayScrollBar) return <ScrollBar items={React.Children.count(children)} activeIndex={activeIndex} viewport={viewport} activeItems={options.activeItems} />
   }
 
   useEffect(() => {

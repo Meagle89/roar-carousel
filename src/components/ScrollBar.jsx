@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const ScrollBar = ({ items, styles, activeIndex, viewport }) => {
+const ScrollBar = ({ items, styles, activeIndex, viewport, activeItems }) => {
   const [width, setWidth] = useState(0);
   const scrollTrack = useRef(null);
 
   useEffect(() => {
-    setWidth(scrollTrack.current.offsetWidth / items);
-  }, [items, viewport]);
+    setWidth(scrollTrack.current.offsetWidth / (items / activeItems) );
+  }, [items, viewport, activeItems]);
 
   const inlineStyles = {
     width: `${Math.ceil(width)}px`,
-    transform: `translateX(${activeIndex * 100}%)`,
+    transform: `translateX(${activeIndex * (100 / activeItems)}%)`,
   };
 
   return (

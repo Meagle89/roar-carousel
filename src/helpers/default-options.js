@@ -1,9 +1,9 @@
 
 const setOptions = (options = {}) => ({
-  activeItems: options.activeItems || 1,
+  activeItems: options.activeItems || 6,
   displayButtons: options.displayButtons || true,
-  displayScrollBar: options.displayScrollBar || false,
-  displayIndicator: options.displayIndicator || true,
+  displayScrollBar: options.displayScrollBar || true,
+  displayIndicator: options.displayIndicator || false,
   nextButtonStyle: options.nextButtonStyle || null,
   prevButtonStyle: options.prevButtonStyle || null,
   infiniteScroll: options.infiniteScroll || false,
