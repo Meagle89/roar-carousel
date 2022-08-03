@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Indicators = ({ items, activeIndex, displayDots, styles }) => {
+const Indicators = ({ items, activeIndex, activeItems, setActiveIndex, styles }) => {
   return (
     <div className={`indicator ${styles}`}>
-      {[...Array(displayDots)].map((dot, index) => {
+      {[...Array((items - activeItems) + 1)].map((dot, index) => {
         if (items > 1) {
-          if (activeIndex < displayDots) {
-            return <Dot active={activeIndex === index} key={index} />;
-          } else {
-            return <Dot active={activeIndex - displayDots === index} key={index} />;
-          }
+            return <Dot active={activeIndex === index} key={index} setActiveIndex={setActiveIndex} index={index} />;
         }
         return null;
       })}
@@ -18,17 +14,16 @@ const Indicators = ({ items, activeIndex, displayDots, styles }) => {
   );
 };
 
-const Dot = ({ active, styles, activeStyles }) => <button className={`dot ${active ? activeStyles : styles}`}></button>;
+const Dot = ({ active, styles, activeStyles, setActiveIndex, index }) => <button onClick={() => setActiveIndex(index) } className={`dot ${active ? activeStyles : styles}`}></button>;
 
 Indicators.propTypes = {
   activeIndex: PropTypes.number.isRequired,
-  displayDots: PropTypes.number,
+  activeItems: PropTypes.number.isRequired,
   items: PropTypes.number.isRequired,
   styles: PropTypes.string,
 };
 
 Indicators.defaultProps = {
-  displayDots: 3,
   styles: "flex mx-auto overflow-hidden whitespace-nowrap w-fit relative -top-[50px]",
 };
 

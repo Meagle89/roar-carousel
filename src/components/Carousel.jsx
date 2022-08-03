@@ -29,7 +29,7 @@ const Carousel = ({ children, options }) => {
   });
 
   const renderIndicators = () => {
-    if ( options.displayIndicator) return <Indicators items={React.Children.count(children)} activeIndex={activeIndex} />
+    if ( options.displayIndicator) return <Indicators items={React.Children.count(children)} activeIndex={activeIndex} activeItems={options.activeItems} setActiveIndex={setActiveIndex} />
   }
 
   const renderButtons = () => {

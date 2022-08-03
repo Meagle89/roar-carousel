@@ -11,6 +11,9 @@ function App() {
         <Item>4</Item>
         <Item>5</Item>
         <Item>6</Item>
+        <Item>7</Item>
+        <Item>8</Item>
+        <Item>9</Item>
       </Carousel>
     </div>
   );
