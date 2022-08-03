@@ -4,23 +4,24 @@ import { useSwipeable } from 'react-swipeable';
 import {Prev, Next} from './Buttons';
 import Indicators from './Indicators';
 import ScrollBar from './ScrollBar';
-import options from '../helpers/default-options';
+import setOptions from '../helpers/default-options';
 
 const Carousel = ({ children, options }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [width, setWidth] = useState(0);
   const [viewport, setViewport] = useState(0);
   const ref = useRef(null);
 
   const updateIndex = (newIndex) => {
     if (newIndex < 0) {
       newIndex = 0;
-    } else if (newIndex >= React.Children.count(children)) {
-      newIndex = React.Children.count(children) - 1;
+    } else if (newIndex >= React.Children.count(children) - options.activeItems) {
+      newIndex = React.Children.count(children) - options.activeItems;
     }
 
     setActiveIndex(newIndex);
   };
+
+  const calculateMultiplier = () => 100 / (options.activeItems);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => updateIndex(activeIndex + 1),
@@ -28,7 +29,7 @@ const Carousel = ({ children, options }) => {
   });
 
   const renderIndicators = () => {
-    if ( options.displayIndicator) return <Indicators />
+    if ( options.displayIndicator) return <Indicators items={React.Children.count(children)} activeIndex={activeIndex} />
   }
 
   const renderButtons = () => {
@@ -41,7 +42,6 @@ const Carousel = ({ children, options }) => {
 
   useEffect(() => {
     const w = window;
-    setWidth(ref.current.scrollWidth);
     setViewport(w.innerWidth);
 
     w.onresize = (ev) => setViewport(ev.target.innerWidth);
@@ -49,9 +49,9 @@ const Carousel = ({ children, options }) => {
 
   return (
     <div {...handlers} className="relative h-full overflow-hidden carousel">
-      <div ref={ref} className="h-full transition-all duration-300 inner whitespace-nowrap" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+      <div ref={ref} className="h-full transition-all duration-300 inner whitespace-nowrap" style={{ transform: `translateX(-${activeIndex * calculateMultiplier()}%)` }}>
         {React.Children.map(children, (child, index) => {
-          return React.cloneElement(child, { width: '100%' });
+          return React.cloneElement(child, { width: `${calculateMultiplier()}%` });
         })}
       </div>
         {renderButtons()}
@@ -67,7 +67,7 @@ Carousel.propTypes = {
 }
 
 Carousel.defaultProps = {
-  options: options
+  options: setOptions(),
 }
 
 export default Carousel;

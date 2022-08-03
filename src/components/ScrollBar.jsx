@@ -10,7 +10,7 @@ const ScrollBar = ({ items, styles, activeIndex, viewport }) => {
   }, [items, viewport]);
 
   const inlineStyles = {
-    width: `${Math.floor(width)}px`,
+    width: `${Math.ceil(width)}px`,
     transform: `translateX(${activeIndex * 100}%)`,
   };
 
