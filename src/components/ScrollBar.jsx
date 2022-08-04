@@ -33,7 +33,7 @@ ScrollBar.propTypes = {
 
 ScrollBar.defaultProps = {
   styles: {
-    track: 'w-full rounded-sm bg-black h-[2px] relative flex justify-start -top-[50px]',
+    track: 'w-full rounded-sm bg-black h-[2px] relative flex justify-start mx-auto my-5',
     thumb: 'h-full rounded-sm bg-[#f7f7f7]',
   },
 };

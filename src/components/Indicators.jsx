@@ -24,7 +24,7 @@ Indicators.propTypes = {
 };
 
 Indicators.defaultProps = {
-  styles: "flex mx-auto overflow-hidden whitespace-nowrap w-fit relative -top-[50px]",
+  styles: "flex mx-auto overflow-hidden whitespace-nowrap w-fit relative my-5",
 };
 
 Dot.propTypes = {
