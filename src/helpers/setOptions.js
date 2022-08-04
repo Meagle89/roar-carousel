@@ -9,7 +9,7 @@ const setOptions = (options = {}) => ({
   scrollBarStyles: options.scrollBarStyles || null,
   indicatorStyles: options.indicatorStyles || null,
   dotStyles: options.dotStyles || null,
-  breakpoints: {
+  breakpoints: options.breakpoints || {
     768: 2,
     1024: 3},
 });
