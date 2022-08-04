@@ -15,6 +15,5 @@ const setOptions = (options = {}) => ({
 });
 
 
-
 export default setOptions;
 

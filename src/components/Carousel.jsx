@@ -13,6 +13,10 @@ const Carousel = ({ children, options }) => {
   const [viewport, setViewport] = useState(0);
   const [activeItems, setActiveItems] = useState(0);
   const ref = useRef(null);
+  const handlers = useSwipeable({
+    onSwipedLeft: () => updateIndex(activeIndex + 1),
+    onSwipedRight: () => updateIndex(activeIndex - 1),
+  });
 
   const updateIndex = useCallback((newIndex) => {
     if (newIndex < 0) {
@@ -22,7 +26,7 @@ const Carousel = ({ children, options }) => {
     }
 
     setActiveIndex(newIndex);
-  },[activeItems, children]) 
+  },[activeItems, children]); 
 
   const updateActiveItems = useCallback((viewportWidth, breakpoints) => {
     if (breakpoints.length === 0) return setActiveItems(options.activeItems);
@@ -42,10 +46,6 @@ const Carousel = ({ children, options }) => {
 
   const calculateMultiplier = () => 100 / activeItems;
 
-  const handlers = useSwipeable({
-    onSwipedLeft: () => updateIndex(activeIndex + 1),
-    onSwipedRight: () => updateIndex(activeIndex - 1),
-  });
 
   const renderIndicators = () => {
     if (options.displayIndicator)

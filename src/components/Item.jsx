@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from 'prop-types';
 
 const Item = ({ children, width }) => {
   return (
@@ -7,5 +7,10 @@ const Item = ({ children, width }) => {
     </div>
   );
 };
+
+Item.propTypes = {
+  children: PropTypes.element.isRequired,
+  width: PropTypes.string.isRequired,
+}
 
 export default Item;
